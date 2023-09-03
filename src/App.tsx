@@ -61,7 +61,7 @@ const Weather = () => {
       <div className="search-container">
         <input
           type="search"
-          class="input"
+          className="input"
           placeholder="Digite o nome de um país ou cidade"
           value={searchLocation}
           onChange={(e) => setSearchLocation(e.target.value)}
