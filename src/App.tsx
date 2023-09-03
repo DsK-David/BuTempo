@@ -1,15 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import { useState,useEffect } from 'react'
 import axios from 'axios';
 import './App.css';
+import dotenv from 'dotenv';
+dotenv.config()
+
 
 const Weather = () => {
   const [userLocation, setUserLocation] = useState<{ latitude: number; longitude: number } | null>(null);
   const [userWeather, setUserWeather] = useState<any>(null);
-  const [nearbyWeather, setNearbyWeather] = useState<any[]>([]);
   const [searchLocation, setSearchLocation] = useState<string>('');
   const [error, setError] = useState<string>('');
 
-  const API_KEY = '04dace5d6b24d853ba7f3a982f119936';
+  const API_KEY = process.env.API_KEY;
 
   // Obter a localização do usuário
   useEffect(() => {
