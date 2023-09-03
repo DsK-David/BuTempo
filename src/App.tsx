@@ -3,15 +3,27 @@ import axios from 'axios';
 import './App.css';
 import dotenv from 'dotenv';
 dotenv.config()
+interface WeatherData {
+  name: string;
+  main: {
+    temp: number;
+  };
+  weather: {
+    description: string;
+    icon: string;
+  }[];
+}
+
 
 
 const Weather = () => {
   const [userLocation, setUserLocation] = useState<{ latitude: number; longitude: number } | null>(null);
-  const [userWeather, setUserWeather] = useState<any>(null);
+  const [userWeather, setUserWeather] = useState<WeatherData | null>(null);
   const [searchLocation, setSearchLocation] = useState<string>('');
   const [error, setError] = useState<string>('');
 
-  const API_KEY = process.env.API_KEY;
+  
+  const API_KEY = process.env.API_KEY
 
   // Obter a localização do usuário
   useEffect(() => {
@@ -38,7 +50,7 @@ const Weather = () => {
           console.error('Erro ao buscar o tempo atual do usuário:', error);
         });
     }
-  }, [userLocation]);
+  }, [API_KEY, userLocation]);
 
   // Função para buscar o tempo com base no nome do país ou cidade
   const searchWeatherByLocation = () => {
