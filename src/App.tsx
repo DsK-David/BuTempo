@@ -1,4 +1,4 @@
-import { useState,useEffect } from 'react'
+import  { useState,useEffect } from 'react'
 import axios from 'axios';
 import './App.css';
 import dotenv from 'dotenv';
@@ -22,8 +22,9 @@ const Weather = () => {
   const [searchLocation, setSearchLocation] = useState<string>('');
   const [error, setError] = useState<string>('');
 
+
   
-  const API_KEY = process.env.API_KEY
+  const API_KEY = process.env.REACT_APP_API_KEY
 
   // Obter a localização do usuário
   useEffect(() => {
@@ -71,33 +72,33 @@ const Weather = () => {
 
   return (
     <div className="weather-container">
-      <h1>Bu tempo</h1>
-      <div className="search-container">
-        <input
-          type="search"
-          className="input"
-          placeholder="Digite o nome de um país ou cidade"
-          value={searchLocation}
-          onChange={(e) => setSearchLocation(e.target.value)}
-        />
-        <button onClick={searchWeatherByLocation}>Pesquisar</button>
-      </div>
-
-      {userWeather && (
-        <div className="weather-card">
-          <h2>{userWeather.name}</h2>
-          <p>Temperatura: {userWeather.main.temp}°C</p>
-          <p>Condição: {userWeather.weather[0].description}</p>
-          <img
-            src={`https://openweathermap.org/img/wn/${userWeather.weather[0].icon}.png`}
-            alt="Condição climática"
-          />
-        </div>
-      )}
-
-      {error && <p>{error}</p>}
+    <h1>Bu tempo</h1>
+    <div className="search-container">
+      <input
+        type="search"
+        className="input"
+        placeholder="Digite o nome de um país ou cidade"
+        value={searchLocation}
+        onChange={(e) => setSearchLocation(e.target.value)}
+      />
+      <button onClick={searchWeatherByLocation}>Pesquisar</button>
     </div>
+
+    {userWeather && (
+      <div className="weather-card">
+        <h2>{userWeather.name}</h2>
+        <p>Temperatura: {userWeather.main.temp}°C</p>
+        <p>Condição: {userWeather.weather[0].description}</p>
+        <img
+          src={`https://openweathermap.org/img/wn/${userWeather.weather[0].icon}.png`}
+          alt="Condição climática"
+        />
+      </div>
+    )}
+
+    {error && <p>{error}</p>}
+  </div>
   );
-};
+      };
 
 export default Weather;
