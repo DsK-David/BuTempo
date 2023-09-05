@@ -2,6 +2,7 @@ import { useState,useEffect } from 'react'
 import axios from 'axios';
 import './App.css';
 import dotenv from 'dotenv';
+import process from 'process';
 dotenv.config()
 interface WeatherData {
   name: string;
